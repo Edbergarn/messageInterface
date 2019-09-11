@@ -1,5 +1,6 @@
 package com.company;
 
+import java.sql.SQLOutput;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -14,10 +15,22 @@ public class Message {
 
     public Message(String msg){
         if (msg.length() <= 140){
-            message = msg;
+            this.createdAt = new Date();
+            this.updatedAt = createdAt;
+            this.message = msg;
+            this.author = System.getProperty("user.name");
+            toString();
         }else {
             System.out.println("Message is too long");
             System.exit(0);
         }
+    }
+
+    public String toString(){
+        System.out.println();
+
+    }
+    public void update(String a){
+
     }
 }
