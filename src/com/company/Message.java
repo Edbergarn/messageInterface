@@ -8,29 +8,39 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Message {
-    private Date createdAt;
+    private  Date createdAt;
     private Date updatedAt;
-    private String message;
-    private String author = System.getProperty("user.name");
+    private  String message;
+    private  String author;
 
     public Message(String msg){
         if (msg.length() <= 140){
             this.createdAt = new Date();
-            this.updatedAt = createdAt;
             this.message = msg;
             this.author = System.getProperty("user.name");
-            toString();
         }else {
             System.out.println("Message is too long");
             System.exit(0);
         }
     }
-
     public String toString(){
-        System.out.println();
+        String a;
+        if (updatedAt == null){
+            return "\"" + message + "\", Created by " + author + " at " + createdAt;
 
+        }else {
+            return "\"" + message + "\", Updated by " + author + " at " + updatedAt;
+        }
     }
-    public void update(String a){
+    public void update(String msg){
+        if (msg.length() <= 140){
+            this.updatedAt = new Date();
+            this.message = msg;
+            this.author = System.getProperty("user.name");
+        }else {
+            System.out.println("Message is too long");
+            System.exit(0);
+        }
 
     }
 }
