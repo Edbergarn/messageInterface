@@ -40,7 +40,6 @@ public class Message implements Serializable {
             this.author = System.getProperty("user.name");
         }else {
             System.out.println("Message is too long");
-            System.exit(0);
         }
 
     }
