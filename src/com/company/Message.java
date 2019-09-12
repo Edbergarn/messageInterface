@@ -1,5 +1,6 @@
 package com.company;
 
+import java.io.Serializable;
 import java.sql.SQLOutput;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -7,7 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-public class Message {
+public class Message implements Serializable {
     private  Date createdAt;
     private Date updatedAt;
     private  String message;

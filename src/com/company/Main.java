@@ -11,13 +11,14 @@ public class Main {
         String msg;
         switch (i){
             case 1:
-                System.out.println("1");
+                getHistory();
                 break;
             case 2:
                 System.out.println("Insert message");
                 msg = getMsg();
                 Message test = new Message(msg);
                 System.out.println(test.toString());
+                save(test);
 
 //                Message.checkMsg(msg);
                 break;
@@ -41,8 +42,44 @@ public class Main {
                 System.exit(0);
                 break;
         }
+    }
+    private static void save(Message a){
+        try {
+            FileOutputStream f = new FileOutputStream(new File("myObjects.txt"));
+            ObjectOutputStream o = new ObjectOutputStream(f);
 
+            // Write objects to file
+            o.writeObject(a);
+
+            o.close();
+            f.close();
+            System.out.println("Saved message");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         // write your code here
+    }
+    private static void getHistory(){
+        try {
+            FileInputStream fi = new FileInputStream(new File("myObjects.txt"));
+            ObjectInputStream oi = new ObjectInputStream(fi);
+
+            // Read objects
+            Message pr1 = (Message) oi.readObject();
+
+            System.out.println(pr1.toString());
+
+            oi.close();
+            fi.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
     private static String getMsg(){
         Scanner sc = new Scanner(System.in);
